@@ -11,9 +11,14 @@ input, button {
   color: white;
   display: flex;
   align-items: center;
-  padding-left: 20px;
   font-family: arial;
   position: fixed;
   width: 100%;
   z-index: 10;
+  justify-content: space-between;
+  padding-left: 30px;
+}
+.navbar > div {
+  padding-right: 100px;
+  cursor: pointer;
 }
