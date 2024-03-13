@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { app, db } from './firebaseConfig'
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import './Login.css'
 import { collection, doc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore"; 
 
@@ -317,8 +317,19 @@ export default function Login() {
     deletePartner();
     closeDeleteModal();
   }
+  function signOutUser() {
+    signOut(auth)
+    setLoginStatus(false)
+    localStorage.setItem('loginStatus', 'false')
+    window.location.reload()
+    
+  }
   return (
     <main className='pageMain'>
+      <div className="navbar">
+        <h1>CTEBase</h1>
+        <div onClick={signOutUser} style={{display: loginStatus ? 'block' : 'none'}}>Logout</div>
+      </div>
       <div className={`loginBackground ${loginStatus ? 'white' : 'linear'}`}>
         <div className="main" style={{display: loginStatus ? 'none' : 'block'}}>  	
           <input type="checkbox" id="chk" aria-hidden="" />
@@ -367,7 +378,7 @@ export default function Login() {
         {/*  */}
       </div>
       
-      <div className="searchPage" style={{overflowY: 'hidden'}}>
+      <div className="searchPage" style={{overflow: 'hidden'}}>
         <div className="topWrapper">
         <h1 className="welcome">Welcome to CTEBase!</h1>
         <form className="searchForm" onSubmit={filter} >
