@@ -157,21 +157,21 @@ export default function Login() {
   const handleSelectChange = (event) => {
     setSelectedValue(event.target.value);
   };
-  function filter(event) {
+  async function filter(event) {
     event.preventDefault();
 
-    async function fetchDataAndFilter() {
-      const data = await fetchDataFromFirestore();
+    // Fetch data from Firestore
+    const data = await fetchDataFromFirestore();
 
-      const newList = data.filter(item =>
-        item[selectedValue].toLowerCase().includes(searchValue.toLowerCase())
-      );
+    // Filter the data based on search criteria
+    const newList = data.filter(item =>
+      item[selectedValue].toLowerCase().includes(searchValue.toLowerCase())
+    );
 
-      setData(newList);
-    }
-
-    fetchDataAndFilter();
+    // Set the state with the filtered list
+    setData(newList);
   }
+
   function reset() {
     setSearchValue('');
     setSelectedValue('name');
@@ -389,8 +389,7 @@ export default function Login() {
             <option value="Location">Location</option>
             <option value="contacts">Contacts</option>
             <option value="description">Description</option>
-            <option value="description">Website</option>
-            <option value="description">Description</option>
+            <option value="website">Website</option>
 
           </select>
           <input
