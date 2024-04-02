@@ -160,15 +160,12 @@ export default function Login() {
   async function filter(event) {
     event.preventDefault();
 
-    // Fetch data from Firestore
     const data = await fetchDataFromFirestore();
 
-    // Filter the data based on search criteria
     const newList = data.filter(item =>
       item[selectedValue].toLowerCase().includes(searchValue.toLowerCase())
     );
 
-    // Set the state with the filtered list
     setData(newList);
   }
 
@@ -253,11 +250,7 @@ export default function Login() {
     }));
   }
   
-  
-  // Similar functions for other fields like contacts, notes, website, etc.
-
   function confirmEdit() {
-      // Update the original data with the edited data
     let editedPartner;
     const updatedData = data.map(partner => {
       if (partner.id === editedPartnerData.id) {
@@ -396,8 +389,8 @@ export default function Login() {
             className='searchBar'
             type="text"
             placeholder="Search"
-            value={searchValue} // Bind input value to state
-            onChange={handleInputChange} // Call handleInputChange on input change
+            value={searchValue}
+            onChange={handleInputChange}
           />
           <button type="submit">Go</button>
         </form>
